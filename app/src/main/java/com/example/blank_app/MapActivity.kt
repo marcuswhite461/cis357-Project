@@ -77,8 +77,17 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapLong
         mapBackButton.typeface = customTypeface
         lifeCounter.typeface = customTypeface
 
+<<<<<<< Updated upstream
         recyclerView.visibility = View.GONE
 
+=======
+
+        recyclerView.visibility = View.GONE
+
+
+
+
+>>>>>>> Stashed changes
     }
 
     //on map ready setup long click listener
