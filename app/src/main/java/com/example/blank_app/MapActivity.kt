@@ -30,6 +30,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapLong
     private val markerList: MutableList<Marker> = mutableListOf()
     //recycler view
     lateinit var recyclerView: RecyclerView
+    //var adapter = RecyclerView.Adapter(coordList)
 
 
 
