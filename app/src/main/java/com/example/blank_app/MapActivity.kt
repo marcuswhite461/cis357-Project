@@ -14,7 +14,13 @@ import com.google.android.gms.maps.model.MarkerOptions
 
 class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapLongClickListener {
 
+    //Google map object: this is where we do all our runtime actions
     private var mGoogleMap:GoogleMap? = null
+    //list of markers
+    val gvsu = LatLng(42.9636004, -85.8892062)
+    var coordList: ArrayList<LatLng> = ArrayList()
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,6 +39,9 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapLong
         //map fragment
         val mapFragment = supportFragmentManager.findFragmentById(R.id.map_fragment) as SupportMapFragment
         mapFragment.getMapAsync(this)
+
+        //initialize the list of coordinates
+        coordList.add(gvsu)
     }
 
     //on map ready setup long click listener
@@ -41,15 +50,17 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapLong
         mGoogleMap!!.setOnMapLongClickListener(this)
 
         //default screen on GVSU
-        val gvsu = LatLng(42.9636004, -85.8892062)
         mGoogleMap!!.addMarker(MarkerOptions().position(gvsu))
         mGoogleMap!!.moveCamera(CameraUpdateFactory.zoomTo(12.0F))
         mGoogleMap!!.moveCamera(CameraUpdateFactory.newLatLng(gvsu))
 
     }
 
-    //what to do when long click
-    override fun onMapLongClick(latLng: LatLng) {
-        Log.d("DANS:", "lat is:" + latLng.toString())
+    //Add marker when clicked
+    override fun onMapLongClick(pointClicked: LatLng) {
+        Log.d("DANS:", "lat is:" + pointClicked.toString())
+        mGoogleMap!!.addMarker(MarkerOptions().position(pointClicked))
+        //add marker to list
+        coordList.add(pointClicked)
     }
 }
