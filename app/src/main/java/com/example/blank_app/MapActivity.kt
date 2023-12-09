@@ -33,8 +33,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapLong
     private val markerColors: MutableMap<Marker, Float> = mutableMapOf()
     private var coordinateList: List<LatLng> = emptyList()
     //recycler view
-    lateinit var recyclerView: RecyclerView
-    private lateinit var recyclerViewContainer: LinearLayout
+    private lateinit var recyclerView: RecyclerView
     private lateinit var customAdapter: CustomAdapter
 
 
@@ -43,9 +42,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapLong
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_map)
-
-
-
+        
         //button to exit map
         val mapBackButton = findViewById<Button>(R.id.MapBackButton)
 
@@ -71,22 +68,11 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapLong
         val mapFragment = supportFragmentManager.findFragmentById(R.id.map_fragment) as SupportMapFragment
         mapFragment.getMapAsync(this)
 
-<<<<<<< Updated upstream
-
-
-
         //changes font
         val customTypeface = resources.getFont(R.font.oxygene1)
-
-
-
         mapBackButton.typeface = customTypeface
         lifeCounter.typeface = customTypeface
 
-
-=======
-        recyclerView.visibility = View.GONE
->>>>>>> Stashed changes
     }
 
     //on map ready setup long click listener
