@@ -39,10 +39,13 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapLong
     override fun onMapReady(googleMap: GoogleMap) {
         mGoogleMap = googleMap
         mGoogleMap!!.setOnMapLongClickListener(this)
-        //default screen
+
+        //default screen on GVSU
         val gvsu = LatLng(42.9636004, -85.8892062)
         mGoogleMap!!.addMarker(MarkerOptions().position(gvsu))
+        mGoogleMap!!.moveCamera(CameraUpdateFactory.zoomTo(12.0F))
         mGoogleMap!!.moveCamera(CameraUpdateFactory.newLatLng(gvsu))
+
     }
 
     //what to do when long click
