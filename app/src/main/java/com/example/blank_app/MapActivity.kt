@@ -8,6 +8,9 @@ import android.view.View
 import android.widget.Button
 import android.widget.PopupMenu
 import android.widget.Toast
+import android.widget.LinearLayout
+import android.widget.TextView
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -24,14 +27,14 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapLong
     //Google map object: this is where we do all our runtime actions
     private var mGoogleMap:GoogleMap? = null
     private var markerCount = 0
-    private var livesCount = 3
+    private var lifeCount = 3
     //list of markers
     private val gvsu = LatLng(42.9636004, -85.8892062)
     private var coordList: ArrayList<LatLng> = ArrayList()
-    private val markerList: MutableList<Marker> = mutableListOf()
     //recycler view
     lateinit var recyclerView: RecyclerView
-    //var adapter = RecyclerView.Adapter(coordList)
+    private lateinit var recyclerViewContainer: LinearLayout
+    private lateinit var customAdapter: CustomAdapter
 
 
 
@@ -61,7 +64,14 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapLong
         coordList.add(gvsu)
 
         //setup recycler variable
-        recyclerView = findViewById(R.id.recyclerView)
+        /* customAdapter = CustomAdapter(coordList){ selectedCoordinate ->
+            handleCoordinateSelection(selectedCoordinate)
+        }
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.adapter = customAdapter
+
+        recyclerViewContainer = findViewById(R.id.recyclerView)
+        hideRecyclerView() */
     }
 
     //on map ready setup long click listener
@@ -91,10 +101,6 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapLong
         //add marker to list
         coordList.add(pointClicked)
 
-        if (newMarker != null) {
-            markerList.add(newMarker)
-        }
-
     }
 
     //marker click event listener
@@ -102,20 +108,44 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapLong
 
         //if marker clicked do something, like show all possible choices of
         //coordinates from coordList?
-        Toast.makeText(
+        showRecyclerView()
+        handleCoordinateSelection(marker.position)
+        customAdapter.setSelectedCoordinate(marker.position)
+        /*Toast.makeText(
             this,
             "${marker.position.toString()}!",
             Toast.LENGTH_SHORT
-        ).show()
+        ).show() */
 
-        //recycler view
-        if(recyclerView.visibility == View.VISIBLE){
-            recyclerView.visibility = View.GONE
-        }
-        else{
-            recyclerView.visibility = View.VISIBLE
-        }
         return true
     }
+    private fun handleCoordinateSelection(selectedCoordinate: LatLng) {
+        val matchingMarker = markerList.find { it.position == selectedCoordinate }
+        matchingMarker?.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN))
+    }
+    private fun showRecyclerView() {
+        recyclerViewContainer?.visibility = View.VISIBLE
 
+    }
+
+    private fun hideRecyclerView() {
+        recyclerViewContainer?.visibility = View.GONE
+
+    }
+
+    private fun updateLifeCounter() {
+        findViewById<TextView>(R.id.lifeCount).text = "Lives: $lifeCount"
+    }
+
+    private fun decreaseLifeCount() {
+        lifeCount--
+        updateLifeCounter()
+        if (lifeCount <= 0) {
+            gameOver()
+        }
+    }
+
+    private fun gameOver() {
+        finish()
+    }
     }

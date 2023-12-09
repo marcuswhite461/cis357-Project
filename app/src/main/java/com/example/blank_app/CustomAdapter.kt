@@ -29,19 +29,6 @@ class CustomAdapter(
         }
     }
 
-    /**
-     * Provide a reference to the type of views that you are using
-     * (custom ViewHolder)
-     */
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val textView: TextView
-
-        init {
-            // Define click listener for the ViewHolder's View
-            textView = view.findViewById(R.id.recyclerView)
-        }
-    }
-
     // Create new views (invoked by the layout manager)
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CoordinateViewHolder {
         val view = LayoutInflater.from(parent.context)

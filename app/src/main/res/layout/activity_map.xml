@@ -40,15 +40,29 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
-        android:layout_width="400dp"
-        android:layout_height="195dp"
-        android:layout_marginStart="40dp"
+        android:layout_width="200dp"
+        android:layout_height="500dp"
+        android:layout_marginStart="200dp"
         android:layout_marginTop="30dp"
         android:layout_marginEnd="40dp"
         android:layout_marginBottom="50dp"
         app:layout_constraintBottom_toTopOf="@+id/toolbar"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/map_fragment" />
+        app:layout_constraintTop_toTopOf="@+id/map_fragment"
+        app:layout_constraintVertical_bias="0.689" />
+
+    <TextView
+        android:id="@+id/lifeCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="30dp"
+        android:text="Lives: 3"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

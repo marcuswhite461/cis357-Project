@@ -13,5 +13,4 @@
         android:textSize="18sp"
         android:textColor="?android:attr/textColorPrimary"/>
 
-    <!-- Add any additional views or styling here -->
 </LinearLayout>

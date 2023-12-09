@@ -35,17 +35,7 @@ class MainActivity : AppCompatActivity()  {
             }
         }
 
-<<<<<<< Updated upstream
-=======
 
-
-
-
-
-
-
-
->>>>>>> Stashed changes
     }//End on create
 
 
