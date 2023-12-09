@@ -5,10 +5,29 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.gms.maps.model.Marker
+import com.google.android.gms.maps.model.LatLng
 
-class CustomAdapter(private val dataSet: Array<Marker>) :
-    RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
+class CustomAdapter(
+    private val coordinateList: List<LatLng>,
+    private val onCoordinateClickListener: (LatLng) -> Unit
+) : RecyclerView.Adapter<CustomAdapter.CoordinateViewHolder>() {
+
+    private var selectedCoordinate: LatLng? = null
+
+    inner class CoordinateViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val textViewCoordinate: TextView = itemView.findViewById(R.id.textViewCoordinate)
+
+        init {
+            itemView.setOnClickListener {
+                val position = adapterPosition
+                if (position != RecyclerView.NO_POSITION) {
+                    onCoordinateClickListener(coordinateList[position])
+                    selectedCoordinate = coordinateList[position]
+                    notifyDataSetChanged()
+                }
+            }
+        }
+    }
 
     /**
      * Provide a reference to the type of views that you are using
@@ -24,23 +43,31 @@ class CustomAdapter(private val dataSet: Array<Marker>) :
     }
 
     // Create new views (invoked by the layout manager)
-    override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
-        // Create a new view, which defines the UI of the list item
-        val view = LayoutInflater.from(viewGroup.context)
-            .inflate(R.layout.text_row_item, viewGroup, false)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CoordinateViewHolder {
+        val view = LayoutInflater.from(parent.context)
+            .inflate(R.layout.list_item_coordinate, parent, false)
 
-        return ViewHolder(view)
+        return CoordinateViewHolder(view)
     }
 
     // Replace the contents of a view (invoked by the layout manager)
-    override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: CoordinateViewHolder, position: Int) {
+        val coordinate = coordinateList[position]
+        val text = "Lat: ${coordinate.latitude}, Lng: ${coordinate.longitude}"
+        holder.textViewCoordinate.text = text
 
-        // Get element from your dataset at this position and replace the
-        // contents of the view with that element
-        viewHolder.textView.text = dataSet[position]
+        // Highlight the selected coordinate
+        holder.itemView.isSelected = coordinate == selectedCoordinate
     }
 
     // Return the size of your dataset (invoked by the layout manager)
-    override fun getItemCount() = dataSet.size
+    override fun getItemCount(): Int {
+        return coordinateList.size
+    }
+
+    fun setSelectedCoordinate(selectedCoordinate: LatLng) {
+        this.selectedCoordinate = selectedCoordinate
+        notifyDataSetChanged()
+    }
 
 }

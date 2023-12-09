@@ -25,23 +25,13 @@ class MainActivity : AppCompatActivity()  {
                 startActivity(it)
             }
         }
-<<<<<<< Updated upstream
-        
-=======
+
 
         OpenTutorialButton.setOnClickListener{v ->
             Intent(this, MainTutorial::class.java).also{
                 startActivity(it)
             }
         }
-
-
-
-
-
->>>>>>> Stashed changes
-
-
 
     }//End on create
 
