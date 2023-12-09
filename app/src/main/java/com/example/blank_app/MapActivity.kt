@@ -33,7 +33,8 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapLong
     private val markerColors: MutableMap<Marker, Float> = mutableMapOf()
     private var coordinateList: List<LatLng> = emptyList()
     //recycler view
-    private lateinit var recyclerView: RecyclerView
+    lateinit var recyclerView: RecyclerView
+    private lateinit var recyclerViewContainer: LinearLayout
     private lateinit var customAdapter: CustomAdapter
 
 
@@ -42,7 +43,9 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapLong
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_map)
-        
+
+
+
         //button to exit map
         val mapBackButton = findViewById<Button>(R.id.MapBackButton)
 
@@ -64,14 +67,23 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapLong
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = customAdapter
 
+        recyclerViewContainer = findViewById(R.id.recyclerViewContainer)
+
         //map fragment
         val mapFragment = supportFragmentManager.findFragmentById(R.id.map_fragment) as SupportMapFragment
         mapFragment.getMapAsync(this)
 
+
+
+
         //changes font
         val customTypeface = resources.getFont(R.font.oxygene1)
+
+
+
         mapBackButton.typeface = customTypeface
         lifeCounter.typeface = customTypeface
+
 
     }
 
@@ -185,4 +197,4 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapLong
     private fun gameOver() {
         finish()
     }
-    }
+}
