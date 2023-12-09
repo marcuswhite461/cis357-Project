@@ -123,26 +123,27 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapLong
         if (selectedMarker == null) {
             // No marker is currently selected
             selectedMarker = marker
+            marker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE))
             customAdapter.setSelectedCoordinate(marker.position)
         } else {
             // A marker is already selected
             if (marker.position == selectedMarker?.position) {
                 // The clicked marker has the same coordinates as the selected marker
                 // Player does not lose a life, and the marker turns green
-                marker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN))
+                selectedMarker?.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN))
                 markerColors[marker] = BitmapDescriptorFactory.HUE_GREEN
                 checkWinCondition()
+                selectedMarker = null
             } else {
                 // The clicked marker has different coordinates from the selected marker
                 // Player loses a life, and the marker turns blue
-                marker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED))
+                selectedMarker?.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED))
                 Toast.makeText(this, "Wrong coordinate, Lost a life!", Toast.LENGTH_SHORT).show()
                 markerColors[marker] = BitmapDescriptorFactory.HUE_RED
                 decreaseLifeCount()
+                selectedMarker = null
             }
 
-            // Clear the selection after processing the click
-            selectedMarker = null
             hideRecyclerView()
         }
 
