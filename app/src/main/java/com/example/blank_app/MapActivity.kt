@@ -72,26 +72,13 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapLong
         //map fragment
         val mapFragment = supportFragmentManager.findFragmentById(R.id.map_fragment) as SupportMapFragment
         mapFragment.getMapAsync(this)
-
-<<<<<<< Updated upstream
-=======
-
-
-
-
->>>>>>> Stashed changes
+        
         //changes font
         val customTypeface = resources.getFont(R.font.oxygene1)
         mapBackButton.typeface = customTypeface
         lifeCounter.typeface = customTypeface
 
-<<<<<<< Updated upstream
-=======
-
-
         recyclerView.visibility = View.GONE
-
->>>>>>> Stashed changes
     }
 
     //on map ready setup long click listener
