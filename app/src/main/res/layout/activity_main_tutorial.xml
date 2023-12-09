@@ -15,7 +15,7 @@
         android:id="@+id/OpenMainButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="50dp"
+        android:layout_marginBottom="16dp"
         android:text="GO BACK"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -32,6 +32,16 @@
 
 
     <ImageView
+        android:id="@+id/thirdTutImage"
+        android:layout_width="268dp"
+        android:layout_height="67dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/winImage"
+        app:srcCompat="@drawable/rectangle" />
+
+    <ImageView
         android:id="@+id/imageView4"
         android:layout_width="239dp"
         android:layout_height="150dp"
@@ -44,6 +54,20 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/map_red_pin" />
 
+
+    <ImageView
+        android:id="@+id/winImage"
+        android:layout_width="239dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="420dp"
+        android:shadowColor="#000000"
+        android:shadowDx="4"
+        android:shadowDy="4"
+        android:shadowRadius="8"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/winimage" />
 
     <TextView
         android:id="@+id/pinTutorial"
@@ -65,5 +89,22 @@
 
 
         />
+
+    <TextView
+        android:id="@+id/winTutorial"
+        android:layout_width="233dp"
+        android:layout_height="57dp"
+        android:shadowColor="#000000"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowRadius="4"
+        android:text="MATCH THE CORRESPONDING COORDINATE WITH ITS PIN TURNING IT GREEN. GET ALL PINS GREEN AND YOU WIN!"
+        android:textColor="#F8F8F8"
+        android:textSize="13sp"
+
+        app:layout_constraintBottom_toBottomOf="@+id/thirdTutImage"
+        app:layout_constraintEnd_toEndOf="@+id/thirdTutImage"
+        app:layout_constraintStart_toStartOf="@+id/thirdTutImage"
+        app:layout_constraintTop_toTopOf="@+id/thirdTutImage" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

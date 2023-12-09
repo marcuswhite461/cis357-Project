@@ -28,9 +28,12 @@ class MainTutorial : AppCompatActivity() {
         //changes font
         val customTypeface = resources.getFont(R.font.oxygene1)
         val pinTutorial = findViewById<TextView>(R.id.pinTutorial)
+        val winTutorial = findViewById<TextView>(R.id.winTutorial)
 
         OpenMainButton.typeface = customTypeface
         pinTutorial.typeface = customTypeface
+        winTutorial.typeface = customTypeface
+
 
     }
 
