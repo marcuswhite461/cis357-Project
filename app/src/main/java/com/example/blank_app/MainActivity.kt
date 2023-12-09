@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.*
 import android.widget.Button
 import android.graphics.Typeface
+import android.widget.TextView
 
 
 class MainActivity : AppCompatActivity()  {
@@ -35,7 +36,30 @@ class MainActivity : AppCompatActivity()  {
             }
         }
 
+<<<<<<< Updated upstream
 
+=======
+
+
+        //change fonts
+        val customTypeface = resources.getFont(R.font.oxygene1)
+        val MainTitle = findViewById<TextView>(R.id.MainTitle)
+
+
+        OpenTutorialButton.typeface = customTypeface
+        OpenMapButton.typeface = customTypeface
+        MainTitle.typeface = customTypeface
+
+
+
+
+
+
+
+
+
+
+>>>>>>> Stashed changes
     }//End on create
 
 
