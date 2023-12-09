@@ -49,6 +49,9 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapLong
         //button to exit map
         val mapBackButton = findViewById<Button>(R.id.MapBackButton)
 
+        //textview of life counter
+        val lifeCounter = findViewById<TextView>(R.id.lifeCount)
+
         //event listener for exiting map
         mapBackButton.setOnClickListener{ v ->
             //clear saved coordinates when quitting
@@ -69,6 +72,17 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapLong
         //map fragment
         val mapFragment = supportFragmentManager.findFragmentById(R.id.map_fragment) as SupportMapFragment
         mapFragment.getMapAsync(this)
+
+
+
+
+        //changes font
+        val customTypeface = resources.getFont(R.font.oxygene1)
+
+
+
+        mapBackButton.typeface = customTypeface
+        lifeCounter.typeface = customTypeface
 
 
     }

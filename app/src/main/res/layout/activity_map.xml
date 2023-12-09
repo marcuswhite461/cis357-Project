@@ -32,7 +32,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:text="Back"
+        android:text="BACK"
         app:layout_constraintBottom_toBottomOf="@+id/map_fragment"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -45,8 +45,13 @@
         android:layout_margin="16dp"
         android:layout_marginStart="30dp"
         android:layout_marginTop="30dp"
-        android:text="Lives: 3"
+        android:text="LIVES: 3"
+        android:textColor="#FFFFFF"
         android:textSize="18sp"
+        android:shadowColor="#000000"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowRadius="4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
