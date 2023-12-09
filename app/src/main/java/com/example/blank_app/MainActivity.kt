@@ -18,13 +18,28 @@ class MainActivity : AppCompatActivity()  {
 
         //buttons
         val OpenMapButton = findViewById<Button>(R.id.OpenMapButton)
+        val OpenTutorialButton = findViewById<Button>(R.id.OpenTutorialButton)
         //event listeners
         OpenMapButton.setOnClickListener{v ->
             Intent(this, MapActivity::class.java).also{
                 startActivity(it)
             }
         }
+<<<<<<< Updated upstream
         
+=======
+
+        OpenTutorialButton.setOnClickListener{v ->
+            Intent(this, MainTutorial::class.java).also{
+                startActivity(it)
+            }
+        }
+
+
+
+
+
+>>>>>>> Stashed changes
 
 
 
