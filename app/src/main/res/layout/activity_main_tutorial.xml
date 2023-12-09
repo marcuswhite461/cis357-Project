@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/MainTutorial"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainTutorial"
+    android:background= "@drawable/worldmap"
+    android:backgroundTint="#80FFFFFF"
+    android:backgroundTintMode="src_over"
+    >
+
+
+    <Button
+        android:id="@+id/OpenMainButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="50dp"
+        android:text="Go Back"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="347dp"
+        android:layout_height="210dp"
+        app:srcCompat="@drawable/rectangle"
+        tools:layout_editor_absoluteX="42dp"
+        tools:layout_editor_absoluteY="23dp" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="189dp"
+        android:layout_height="103dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintEnd_toEndOf="@+id/imageView3"
+        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintStart_toStartOf="@+id/imageView3"
+        app:layout_constraintTop_toTopOf="@+id/imageView3"
+        app:srcCompat="@drawable/map_red_pin" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="You are given 4 red pins to place on the map."
+        tools:layout_editor_absoluteX="65dp"
+        tools:layout_editor_absoluteY="171dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
