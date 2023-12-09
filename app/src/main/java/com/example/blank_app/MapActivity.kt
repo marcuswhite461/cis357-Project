@@ -29,8 +29,9 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapLong
     private var markerCount = 0
     private var lifeCount = 3
     //list of markers
+    private var selectedMarker: Marker? = null
     private val gvsu = LatLng(42.9636004, -85.8892062)
-    private var coordList: ArrayList<LatLng> = ArrayList()
+    private val markerList: MutableList<Marker> = mutableListOf()
     //recycler view
     lateinit var recyclerView: RecyclerView
     private lateinit var recyclerViewContainer: LinearLayout
@@ -51,27 +52,25 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapLong
         //event listener for exiting map
         MapBackButton.setOnClickListener{v ->
             //clear saved coordinates when quitting
-            coordList.clear()
+            markerList.clear()
             finish()
         }
+
+        // Initialize the RecyclerView and Adapter
+        recyclerView = findViewById(R.id.recyclerView)
+        customAdapter = CustomAdapter(markerList.map { it.position }) { selectedCoordinate ->
+            handleCoordinateSelection(selectedCoordinate)
+        }
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.adapter = customAdapter
+
+        recyclerViewContainer = findViewById(R.id.recyclerViewContainer)
 
         //map fragment
         val mapFragment = supportFragmentManager.findFragmentById(R.id.map_fragment) as SupportMapFragment
         mapFragment.getMapAsync(this)
 
 
-        //initialize the list of coordinates
-        coordList.add(gvsu)
-
-        //setup recycler variable
-        /* customAdapter = CustomAdapter(coordList){ selectedCoordinate ->
-            handleCoordinateSelection(selectedCoordinate)
-        }
-        recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.adapter = customAdapter
-
-        recyclerViewContainer = findViewById(R.id.recyclerView)
-        hideRecyclerView() */
     }
 
     //on map ready setup long click listener
@@ -99,26 +98,42 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapLong
             .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED))
             .title("Marker $markerCount"))
         //add marker to list
-        coordList.add(pointClicked)
+        if (newMarker != null) {
+            markerList.add(newMarker)
+        }
 
     }
 
     //marker click event listener
     override fun onMarkerClick(marker: Marker): Boolean {
-
-        //if marker clicked do something, like show all possible choices of
-        //coordinates from coordList?
+        // show markerList
         showRecyclerView()
-        handleCoordinateSelection(marker.position)
-        customAdapter.setSelectedCoordinate(marker.position)
-        /*Toast.makeText(
-            this,
-            "${marker.position.toString()}!",
-            Toast.LENGTH_SHORT
-        ).show() */
+
+        // set Marker
+        if (selectedMarker == null) {
+            // No marker is currently selected
+            selectedMarker = marker
+            customAdapter.setSelectedCoordinate(marker.position)
+        } else {
+            // A marker is already selected
+            if (marker.position == selectedMarker?.position) {
+                // The clicked marker has the same coordinates as the selected marker
+                // Player does not lose a life, and the marker turns green
+                marker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN))
+            } else {
+                // The clicked marker has different coordinates from the selected marker
+                // Player loses a life, and the marker turns blue
+                marker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE))
+                decreaseLifeCount()
+            }
+
+            // Clear the selection after processing the click
+            selectedMarker = null
+        }
 
         return true
     }
+
     private fun handleCoordinateSelection(selectedCoordinate: LatLng) {
         val matchingMarker = markerList.find { it.position == selectedCoordinate }
         matchingMarker?.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN))
