@@ -73,17 +73,10 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapLong
         val mapFragment = supportFragmentManager.findFragmentById(R.id.map_fragment) as SupportMapFragment
         mapFragment.getMapAsync(this)
 
-
-
-
         //changes font
         val customTypeface = resources.getFont(R.font.oxygene1)
-
-
-
         mapBackButton.typeface = customTypeface
         lifeCounter.typeface = customTypeface
-
 
     }
 
@@ -94,7 +87,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapLong
 
         //default screen on GVSU
         mGoogleMap!!.addMarker(MarkerOptions().position(gvsu)
-            .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)))
+            .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)))
         mGoogleMap!!.moveCamera(CameraUpdateFactory.zoomTo(12.0F))
         mGoogleMap!!.moveCamera(CameraUpdateFactory.newLatLng(gvsu))
 
@@ -141,8 +134,9 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapLong
             } else {
                 // The clicked marker has different coordinates from the selected marker
                 // Player loses a life, and the marker turns blue
-                marker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE))
-                markerColors[marker] = BitmapDescriptorFactory.HUE_BLUE
+                marker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED))
+                Toast.makeText(this, "Wrong coordinate, Lost a life!", Toast.LENGTH_SHORT).show()
+                markerColors[marker] = BitmapDescriptorFactory.HUE_RED
                 decreaseLifeCount()
             }
 
