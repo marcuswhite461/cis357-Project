@@ -23,8 +23,8 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapLong
     private var mGoogleMap:GoogleMap? = null
     private var markerCount = 0
     //list of markers
-    val gvsu = LatLng(42.9636004, -85.8892062)
-    var coordList: ArrayList<LatLng> = ArrayList()
+    private val gvsu = LatLng(42.9636004, -85.8892062)
+    private var coordList: ArrayList<LatLng> = ArrayList()
     private val markerList: MutableList<Marker> = mutableListOf()
 
 
@@ -41,7 +41,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapLong
 
         //event listener for exiting map
         MapBackButton.setOnClickListener{v ->
-            //clear saved coordates when quitting
+            //clear saved coordinates when quitting
             coordList.clear()
             finish()
         }
@@ -49,6 +49,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapLong
         //map fragment
         val mapFragment = supportFragmentManager.findFragmentById(R.id.map_fragment) as SupportMapFragment
         mapFragment.getMapAsync(this)
+
 
         //initialize the list of coordinates
         coordList.add(gvsu)
@@ -72,7 +73,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapLong
 
     //Add marker when clicked
     override fun onMapLongClick(pointClicked: LatLng) {
-        Log.d("DANS:", "lat is:" + pointClicked.toString())
+        Log.d("DANS:", "lat is:$pointClicked")
         markerCount ++
         val newMarker = mGoogleMap!!.addMarker(MarkerOptions()
             .position(pointClicked)
@@ -91,12 +92,13 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapLong
     override fun onMarkerClick(marker: Marker): Boolean {
 
         //if marker clicked do something, like show all possible choices of
-        //coordidantes from coordList?
+        //coordinates from coordList?
         Toast.makeText(
             this,
             "${marker.position.toString()}!",
             Toast.LENGTH_SHORT
         ).show()
+
         //Need to add a menu of all coords to click on. if good turn pin green
         //https://developer.android.com/develop/ui/views/components/menus
         return true
