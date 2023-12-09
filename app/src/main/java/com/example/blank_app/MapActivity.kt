@@ -84,7 +84,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapLong
             Toast.LENGTH_SHORT
         ).show()
         //Need to add a menu of all coords to click on. if good turn pin green
-        
+        //https://developer.android.com/develop/ui/views/components/menus
         return true
     }
 
