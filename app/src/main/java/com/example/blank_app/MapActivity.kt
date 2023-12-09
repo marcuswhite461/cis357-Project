@@ -169,11 +169,13 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapLong
     }
     private fun showRecyclerView() {
         recyclerViewContainer?.visibility = View.VISIBLE
+        recyclerView?.visibility = View.VISIBLE
 
     }
 
     private fun hideRecyclerView() {
         recyclerViewContainer?.visibility = View.GONE
+        recyclerView?.visibility = View.GONE
 
     }
 

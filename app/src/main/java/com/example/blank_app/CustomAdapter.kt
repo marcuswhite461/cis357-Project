@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.maps.model.LatLng
 
 
-
 class CustomAdapter(
     private val coordinateList: List<LatLng>,
     private val onCoordinateClickListener: (LatLng) -> Unit
