@@ -24,6 +24,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapLong
     //Google map object: this is where we do all our runtime actions
     private var mGoogleMap:GoogleMap? = null
     private var markerCount = 0
+    private var livesCount = 3
     //list of markers
     private val gvsu = LatLng(42.9636004, -85.8892062)
     private var coordList: ArrayList<LatLng> = ArrayList()
