@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import android.widget.PopupMenu
 import android.widget.Toast
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -74,14 +75,16 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapLong
 
     //marker click event listener
     override fun onMarkerClick(marker: Marker): Boolean {
+
         //if marker clicked do something, like show all possible choices of
         //coordidantes from coordList?
         Toast.makeText(
             this,
-            "You Clicked Me!",
+            "${marker.position.toString()}!",
             Toast.LENGTH_SHORT
         ).show()
-
+        //Need to add a menu of all coords to click on. if good turn pin green
+        
         return true
     }
 
