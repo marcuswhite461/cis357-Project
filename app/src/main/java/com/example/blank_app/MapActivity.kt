@@ -11,6 +11,7 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
@@ -56,7 +57,8 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapLong
         mGoogleMap!!.setOnMapLongClickListener(this)
 
         //default screen on GVSU
-        mGoogleMap!!.addMarker(MarkerOptions().position(gvsu))
+        mGoogleMap!!.addMarker(MarkerOptions().position(gvsu)
+            .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)))
         mGoogleMap!!.moveCamera(CameraUpdateFactory.zoomTo(12.0F))
         mGoogleMap!!.moveCamera(CameraUpdateFactory.newLatLng(gvsu))
 
@@ -68,7 +70,8 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapLong
     //Add marker when clicked
     override fun onMapLongClick(pointClicked: LatLng) {
         Log.d("DANS:", "lat is:" + pointClicked.toString())
-        mGoogleMap!!.addMarker(MarkerOptions().position(pointClicked))
+        mGoogleMap!!.addMarker(MarkerOptions().position(pointClicked)
+            .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)))
         //add marker to list
         coordList.add(pointClicked)
     }
