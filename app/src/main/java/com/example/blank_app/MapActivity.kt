@@ -5,14 +5,17 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import android.widget.Toast
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 
-class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapLongClickListener {
+class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapLongClickListener,
+    GoogleMap.OnMarkerClickListener {
 
     //Google map object: this is where we do all our runtime actions
     private var mGoogleMap:GoogleMap? = null
@@ -33,6 +36,8 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapLong
 
         //event listener for exiting map
         MapBackButton.setOnClickListener{v ->
+            //clear saved coordates when quitting
+            coordList.clear()
             finish()
         }
 
@@ -54,6 +59,9 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapLong
         mGoogleMap!!.moveCamera(CameraUpdateFactory.zoomTo(12.0F))
         mGoogleMap!!.moveCamera(CameraUpdateFactory.newLatLng(gvsu))
 
+        //marker/pin listener
+        googleMap.setOnMarkerClickListener(this)
+
     }
 
     //Add marker when clicked
@@ -63,4 +71,18 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapLong
         //add marker to list
         coordList.add(pointClicked)
     }
-}
+
+    //marker click event listener
+    override fun onMarkerClick(marker: Marker): Boolean {
+        //if marker clicked do something, like show all possible choices of
+        //coordidantes from coordList?
+        Toast.makeText(
+            this,
+            "You Clicked Me!",
+            Toast.LENGTH_SHORT
+        ).show()
+
+        return true
+    }
+
+    }
