@@ -1,12 +1,10 @@
 package com.example.blank_app
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Button
-import android.widget.PopupMenu
 import android.widget.Toast
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -32,6 +30,8 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapLong
     private var selectedMarker: Marker? = null
     private val gvsu = LatLng(42.9636004, -85.8892062)
     private val markerList: MutableList<Marker> = mutableListOf()
+    private val markerColors: MutableMap<Marker, Float> = mutableMapOf()
+    private var coordinateList: List<LatLng> = emptyList()
     //recycler view
     lateinit var recyclerView: RecyclerView
     private lateinit var recyclerViewContainer: LinearLayout
@@ -47,10 +47,10 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapLong
 
 
         //button to exit map
-        val MapBackButton = findViewById<Button>(R.id.MapBackButton)
+        val mapBackButton = findViewById<Button>(R.id.MapBackButton)
 
         //event listener for exiting map
-        MapBackButton.setOnClickListener{v ->
+        mapBackButton.setOnClickListener{ v ->
             //clear saved coordinates when quitting
             markerList.clear()
             finish()
@@ -100,6 +100,8 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapLong
         //add marker to list
         if (newMarker != null) {
             markerList.add(newMarker)
+            markerColors[newMarker] = BitmapDescriptorFactory.HUE_RED
+            updateCoordinateList()
         }
 
     }
@@ -120,10 +122,13 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapLong
                 // The clicked marker has the same coordinates as the selected marker
                 // Player does not lose a life, and the marker turns green
                 marker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN))
+                markerColors[marker] = BitmapDescriptorFactory.HUE_GREEN
+                checkWinCondition()
             } else {
                 // The clicked marker has different coordinates from the selected marker
                 // Player loses a life, and the marker turns blue
                 marker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE))
+                markerColors[marker] = BitmapDescriptorFactory.HUE_BLUE
                 decreaseLifeCount()
             }
 
@@ -137,6 +142,11 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapLong
     private fun handleCoordinateSelection(selectedCoordinate: LatLng) {
         val matchingMarker = markerList.find { it.position == selectedCoordinate }
         matchingMarker?.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN))
+    }
+
+    private fun updateCoordinateList() {
+        coordinateList = markerList.map { it.position }
+        customAdapter.notifyDataSetChanged()
     }
     private fun showRecyclerView() {
         recyclerViewContainer?.visibility = View.VISIBLE
@@ -157,6 +167,15 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapLong
         updateLifeCounter()
         if (lifeCount <= 0) {
             gameOver()
+        }
+    }
+    private fun checkWinCondition() {
+        val allMarkersAreGreen = markerColors.values.all { it == BitmapDescriptorFactory.HUE_GREEN }
+
+        if (allMarkersAreGreen) {
+            // All markers are green, notify the player of the win
+            Toast.makeText(this, "Congratulations! You won!", Toast.LENGTH_SHORT).show()
+            //gameOver()
         }
     }
 
