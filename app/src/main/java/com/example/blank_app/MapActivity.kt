@@ -4,9 +4,11 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.PopupMenu
 import android.widget.Toast
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -26,6 +28,8 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapLong
     private val gvsu = LatLng(42.9636004, -85.8892062)
     private var coordList: ArrayList<LatLng> = ArrayList()
     private val markerList: MutableList<Marker> = mutableListOf()
+    //recycler view
+    lateinit var recyclerView: RecyclerView
 
 
 
@@ -53,6 +57,9 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapLong
 
         //initialize the list of coordinates
         coordList.add(gvsu)
+
+        //setup recycler variable
+        recyclerView = findViewById(R.id.recyclerView)
     }
 
     //on map ready setup long click listener
@@ -99,8 +106,13 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapLong
             Toast.LENGTH_SHORT
         ).show()
 
-        //Need to add a menu of all coords to click on. if good turn pin green
-        //https://developer.android.com/develop/ui/views/components/menus
+        //recycler view
+        if(recyclerView.visibility == View.VISIBLE){
+            recyclerView.visibility = View.GONE
+        }
+        else{
+            recyclerView.visibility = View.VISIBLE
+        }
         return true
     }
 
