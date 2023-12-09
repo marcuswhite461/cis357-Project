@@ -34,25 +34,18 @@ class MainActivity : AppCompatActivity()  {
             }
         }
 
-<<<<<<< Updated upstream
-=======
 
->>>>>>> Stashed changes
         //change fonts
         val customTypeface = resources.getFont(R.font.oxygene1)
         val mainTitle = findViewById<TextView>(R.id.MainTitle)
 
 
-<<<<<<< Updated upstream
+
         openTutorialButton.typeface = customTypeface
         openMapButton.typeface = customTypeface
         mainTitle.typeface = customTypeface
 
 
-=======
-        OpenTutorialButton.typeface = customTypeface
-        OpenMapButton.typeface = customTypeface
-        MainTitle.typeface = customTypeface
 
 
 
@@ -66,7 +59,9 @@ class MainActivity : AppCompatActivity()  {
 
 
 
->>>>>>> Stashed changes
+
+
+
     }//End on create
 
 
