@@ -21,9 +21,12 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapLong
 
     //Google map object: this is where we do all our runtime actions
     private var mGoogleMap:GoogleMap? = null
+    private var markerCount = 0
     //list of markers
     val gvsu = LatLng(42.9636004, -85.8892062)
     var coordList: ArrayList<LatLng> = ArrayList()
+    private val markerList: MutableList<Marker> = mutableListOf()
+
 
 
 
@@ -70,10 +73,18 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapLong
     //Add marker when clicked
     override fun onMapLongClick(pointClicked: LatLng) {
         Log.d("DANS:", "lat is:" + pointClicked.toString())
-        mGoogleMap!!.addMarker(MarkerOptions().position(pointClicked)
-            .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)))
+        markerCount ++
+        val newMarker = mGoogleMap!!.addMarker(MarkerOptions()
+            .position(pointClicked)
+            .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED))
+            .title("Marker $markerCount"))
         //add marker to list
         coordList.add(pointClicked)
+
+        if (newMarker != null) {
+            markerList.add(newMarker)
+        }
+
     }
 
     //marker click event listener
