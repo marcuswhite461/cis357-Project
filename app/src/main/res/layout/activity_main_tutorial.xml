@@ -27,8 +27,8 @@
         android:layout_width="347dp"
         android:layout_height="210dp"
         app:srcCompat="@drawable/rectangle"
-        tools:layout_editor_absoluteX="42dp"
-        tools:layout_editor_absoluteY="23dp" />
+        tools:layout_editor_absoluteX="32dp"
+        tools:layout_editor_absoluteY="16dp" />
 
     <ImageView
         android:id="@+id/imageView4"
@@ -42,7 +42,7 @@
         app:srcCompat="@drawable/map_red_pin" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/pinTutorial"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="You are given 4 red pins to place on the map."

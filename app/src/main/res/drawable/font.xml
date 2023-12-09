@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
-<TextView
-
+<font-family xmlns:android="http://schemas.android.com/apk/res/android">
+<font
+    android:fontStyle="normal"
+    android:fontWeight="400"
+    android:font="@font/oxygene1"
 
     />
-</selector>
+</font-family>

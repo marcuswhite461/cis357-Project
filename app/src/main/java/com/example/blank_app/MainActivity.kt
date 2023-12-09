@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.*
 import android.widget.Button
+import android.graphics.Typeface
+
 
 class MainActivity : AppCompatActivity()  {
 
@@ -33,6 +35,17 @@ class MainActivity : AppCompatActivity()  {
             }
         }
 
+<<<<<<< Updated upstream
+=======
+
+
+
+
+
+
+
+
+>>>>>>> Stashed changes
     }//End on create
 
 
