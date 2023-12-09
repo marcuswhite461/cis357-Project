@@ -67,12 +67,11 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapLong
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = customAdapter
 
-        recyclerViewContainer = findViewById(R.id.recyclerViewContainer)
-
         //map fragment
         val mapFragment = supportFragmentManager.findFragmentById(R.id.map_fragment) as SupportMapFragment
         mapFragment.getMapAsync(this)
 
+<<<<<<< Updated upstream
 
 
 
@@ -85,6 +84,9 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapLong
         lifeCounter.typeface = customTypeface
 
 
+=======
+        recyclerView.visibility = View.GONE
+>>>>>>> Stashed changes
     }
 
     //on map ready setup long click listener

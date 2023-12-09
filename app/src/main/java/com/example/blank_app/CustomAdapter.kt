@@ -10,7 +10,7 @@ import com.google.android.gms.maps.model.LatLng
 
 
 class CustomAdapter(
-    var coordinateList: List<LatLng>,
+    private val coordinateList: List<LatLng>,
     private val onCoordinateClickListener: (LatLng) -> Unit
 ) : RecyclerView.Adapter<CustomAdapter.CoordinateViewHolder>() {
 
@@ -24,14 +24,11 @@ class CustomAdapter(
                 val position = adapterPosition
                 if (position != RecyclerView.NO_POSITION) {
                     onCoordinateClickListener(coordinateList[position])
-                    selectedCoordinate = coordinateList[position]
-                    notifyDataSetChanged()
                 }
             }
         }
     }
 
-    // Create new views (invoked by the layout manager)
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CoordinateViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.list_item_coordinate, parent, false)
@@ -39,7 +36,6 @@ class CustomAdapter(
         return CoordinateViewHolder(view)
     }
 
-    // Replace the contents of a view (invoked by the layout manager)
     override fun onBindViewHolder(holder: CoordinateViewHolder, position: Int) {
         val coordinate = coordinateList[position]
         val text = "Lat: ${coordinate.latitude}, Lng: ${coordinate.longitude}"
@@ -49,7 +45,6 @@ class CustomAdapter(
         holder.itemView.isSelected = coordinate == selectedCoordinate
     }
 
-    // Return the size of your dataset (invoked by the layout manager)
     override fun getItemCount(): Int {
         return coordinateList.size
     }
@@ -58,5 +53,4 @@ class CustomAdapter(
         this.selectedCoordinate = selectedCoordinate
         notifyDataSetChanged()
     }
-
 }
