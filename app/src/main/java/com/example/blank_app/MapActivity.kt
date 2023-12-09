@@ -166,6 +166,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapLong
         lifeCount--
         updateLifeCounter()
         if (lifeCount <= 0) {
+            Toast.makeText(this, "You lost! Try again!", Toast.LENGTH_SHORT).show()
             gameOver()
         }
     }
@@ -175,7 +176,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapLong
         if (allMarkersAreGreen) {
             // All markers are green, notify the player of the win
             Toast.makeText(this, "Congratulations! You won!", Toast.LENGTH_SHORT).show()
-            //gameOver()
+            gameOver()
         }
     }
 
