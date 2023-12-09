@@ -143,6 +143,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapLong
 
             // Clear the selection after processing the click
             selectedMarker = null
+            hideRecyclerView()
         }
 
         return true
