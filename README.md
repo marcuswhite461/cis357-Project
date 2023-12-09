@@ -1,3 +1,3 @@
 # cis357-Project
 
-#By Dan George, 
+#By Dan George, Marcus White Jr, Brady 
