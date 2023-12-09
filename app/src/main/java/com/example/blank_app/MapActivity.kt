@@ -159,7 +159,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapLong
     }
 
     private fun updateLifeCounter() {
-        findViewById<TextView>(R.id.lifeCount).text = "Lives: $lifeCount"
+        findViewById<TextView>(R.id.lifeCount).text = "LIVES: $lifeCount"
     }
 
     private fun decreaseLifeCount() {
