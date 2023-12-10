@@ -1,5 +1,6 @@
 package com.example.blank_app
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -11,6 +12,7 @@ class MainActivity : AppCompatActivity()  {
 
 
 
+    @SuppressLint("NewApi")
     override fun onCreate(savedInstanceState: Bundle?) {
 
         //on create
@@ -39,28 +41,9 @@ class MainActivity : AppCompatActivity()  {
         val customTypeface = resources.getFont(R.font.oxygene1)
         val mainTitle = findViewById<TextView>(R.id.MainTitle)
 
-
-
         openTutorialButton.typeface = customTypeface
         openMapButton.typeface = customTypeface
         mainTitle.typeface = customTypeface
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     }//End on create
 

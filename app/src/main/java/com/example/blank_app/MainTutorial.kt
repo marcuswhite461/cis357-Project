@@ -4,7 +4,6 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
-import android.graphics.Typeface
 import android.os.Build
 import android.widget.TextView
 import androidx.annotation.RequiresApi
@@ -15,10 +14,10 @@ class MainTutorial : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_tutorial)
         //Buttons
-        val OpenMainButton = findViewById<Button>(R.id.OpenMainButton)
+        val openMainButton = findViewById<Button>(R.id.OpenMainButton)
 
 
-        OpenMainButton.setOnClickListener{v ->
+        openMainButton.setOnClickListener{ v ->
             Intent(this, MainActivity::class.java).also{
                 startActivity(it)
             }
@@ -30,7 +29,7 @@ class MainTutorial : AppCompatActivity() {
         val pinTutorial = findViewById<TextView>(R.id.pinTutorial)
         val winTutorial = findViewById<TextView>(R.id.winTutorial)
 
-        OpenMainButton.typeface = customTypeface
+        openMainButton.typeface = customTypeface
         pinTutorial.typeface = customTypeface
         winTutorial.typeface = customTypeface
 

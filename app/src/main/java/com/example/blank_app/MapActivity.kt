@@ -1,5 +1,6 @@
 package com.example.blank_app
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -41,6 +42,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapLong
 
 
 
+    @SuppressLint("NewApi")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_map)
@@ -77,6 +79,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapLong
         mapBackButton.typeface = customTypeface
         lifeCounter.typeface = customTypeface
 
+<<<<<<< Updated upstream
 
 
         recyclerView.visibility = View.GONE
@@ -85,6 +88,11 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMapLong
 
 
 
+=======
+        recyclerView.visibility = View.GONE
+
+
+>>>>>>> Stashed changes
     }
 
     //on map ready setup long click listener
